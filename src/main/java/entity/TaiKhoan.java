@@ -11,6 +11,7 @@ package entity;
 public class TaiKhoan {
     public String tenTk;
     public String matKhau;
+    public String avatar;
     public boolean vaiTro;
     public String trangThai;
 
@@ -55,6 +56,16 @@ public class TaiKhoan {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+
    
     
 }

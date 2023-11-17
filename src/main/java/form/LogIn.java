@@ -13,6 +13,7 @@ import main.Main;
 import dao.TaiKhoanDAO;
 import entity.AccountData;
 import entity.NguoiDung;
+import java.io.File;
 //import org.mindrot.jbcrypt.BCrypt;
 
 public class LogIn extends javax.swing.JFrame {
@@ -23,10 +24,10 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         init();
         this.lbLoading.setVisible(false);
-        String tenTk = txtName.getText();
-        AccountData.setTenTK(tenTk);
+
     }
     TaiKhoanDAO dao = new TaiKhoanDAO();
+    NguoiDungDangKyDAO nddao = new NguoiDungDangKyDAO();
 
     public void init() {
         txtName.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/user.png")));
@@ -41,9 +42,14 @@ public class LogIn extends javax.swing.JFrame {
 
     void dangNhap() {
         String tenTK = txtName.getText();
+        AccountData.setTenTK(tenTK);
         String matKhau = new String(txtPass.getPassword());
 //        boolean mahoa = bcryrt(matKhau, nv.getMatKhau());
         TaiKhoan tk = dao.selectById(tenTK);
+        String linkPath = tk.getAvatar();
+        File file = new File(linkPath);
+        String ii = file.toString();
+        AccountData.setLink(ii);
         if (tk != null) {
             if (!matKhau.equals(tk.getMatKhau())) {
                 msgBox.alertError(this, "Tên tài khoản hoặc mật khẩu không đúng");
@@ -59,7 +65,6 @@ public class LogIn extends javax.swing.JFrame {
                 formTimer.setRepeats(false);
                 formTimer.start();
             }
-
         } else {
             msgBox.alertError(this, "Tên tài khoản hoặc mật khẩu không đúng");
         }
@@ -141,12 +146,12 @@ public class LogIn extends javax.swing.JFrame {
         panel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 142, 120, 30));
 
         txtPass.setForeground(new java.awt.Color(0, 0, 0));
-        txtPass.setText("adminpass2");
+        txtPass.setText("A12345*");
         txtPass.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         panel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 258, 278, -1));
 
         txtName.setForeground(new java.awt.Color(0, 0, 0));
-        txtName.setText("admin2");
+        txtName.setText("abc123a2");
         txtName.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         panel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 190, 278, -1));
 

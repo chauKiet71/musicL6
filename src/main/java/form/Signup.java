@@ -21,7 +21,6 @@ public class Signup extends javax.swing.JFrame {
         initComponents();
         init();
         this.lbLoading.setVisible(false);
-
     }
     TaiKhoanDangKyDAO tkdao = new TaiKhoanDangKyDAO();
     NguoiDungDangKyDAO ngdao = new NguoiDungDangKyDAO();
@@ -65,6 +64,8 @@ public class Signup extends javax.swing.JFrame {
         TaiKhoan tk = new TaiKhoan();
         tk.setTenTk(txtTaiKhoan.getText());
         tk.setMatKhau(txtPass.getText());
+        String tenTk = txtTaiKhoan.getText();
+        AccountData.setTenTK(tenTk);
         return tk;
     }
 
@@ -91,8 +92,6 @@ public class Signup extends javax.swing.JFrame {
             tkdao.insert(tk);
             ngdao.insert(ng);
             msgBox.alert(this, "Đăng ký thành công");
-            String tenTk = txtTaiKhoan.getText();
-            AccountData.setTenTK(tenTk);
             updateAnh upAnh = new updateAnh();
             upAnh.setVisible(true);
             this.dispose();
@@ -231,7 +230,6 @@ public class Signup extends javax.swing.JFrame {
 //        String maHoa = BCrypt.hashpw(pass, BCrypt.gensalt());
 //        return maHoa;
 //    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

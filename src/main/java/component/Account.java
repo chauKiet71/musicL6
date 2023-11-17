@@ -18,6 +18,7 @@ public class Account extends javax.swing.JPanel {
         String link = AccountData.getLink();
         ImageIcon icon = new ImageIcon(link);
         listAccount1.addItem(new Model_Account(name, icon));
+//        listAccount1.addItem(new Model_Account(name, new ImageIcon(getClass().getResource("/icon/avartar.jpg"))));
     }
 
     @SuppressWarnings("unchecked")

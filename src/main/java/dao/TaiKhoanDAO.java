@@ -20,8 +20,8 @@ import utils.XJdbcc;
  */
 public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
 
-    String INSERT = "INSERT INTO TaiKhoan (TenTK, MatKhau, VaiTro, TrangThai) VALUES (?, ?, ?, ?)";
-    String UPDATE = "UPDATE TenTK set MatKhau = ?, VaiTro = ?, TrangThai = ? WHERE TenTK = ?";
+    String INSERT = "INSERT INTO TaiKhoan (TenTK, MatKhau, VaiTro, avatar, TrangThai) VALUES (?, ?, ?, ?, ?)";
+    String UPDATE = "UPDATE TaiKhoan set avatar = ? WHERE TenTK = ?";
     String DELETE = "DELETE FROM TaiKhoan WHERE TenTK = ?";
     String SELECT_BY_ID = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
     
@@ -30,7 +30,7 @@ public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
     @Override
     public void insert(TaiKhoan entity) {
         try {
-            XJdbcc.update(INSERT, entity.getTenTk(), entity.getMatKhau(), entity.isVaiTro(), entity.getTrangThai());
+            XJdbcc.update(INSERT, entity.getTenTk(), entity.getMatKhau(), entity.getAvatar(), entity.isVaiTro(), entity.getTrangThai());
         } catch (SQLException ex) {
             Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,7 +39,7 @@ public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
     @Override
     public void update(TaiKhoan entity) {
         try {
-            XJdbcc.update(UPDATE, entity.getMatKhau(), entity.isVaiTro(), entity.getTrangThai(), entity.getTenTk());
+            XJdbcc.update(UPDATE, entity.getAvatar(),   entity.getTenTk());
         } catch (SQLException ex) {
             Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,8 +77,9 @@ public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
                 TaiKhoan tk = new TaiKhoan();
                 tk.setTenTk(rs.getString(1));
                 tk.setMatKhau(rs.getString(2));
-                tk.setVaiTro(rs.getBoolean(3));
-                tk.setTrangThai(rs.getString(4));
+                tk.setAvatar(rs.getString(3));
+                tk.setVaiTro(rs.getBoolean(4));
+                tk.setTrangThai(rs.getString(5));
                 list.add(tk);
             }
             rs.getStatement().getConnection().close();

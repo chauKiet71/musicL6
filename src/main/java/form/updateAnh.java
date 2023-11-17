@@ -8,6 +8,7 @@ import dao.NguoiDungDangKyDAO;
 import dao.*;
 import entity.AccountData;
 import entity.NguoiDung;
+import entity.TaiKhoan;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -31,14 +32,17 @@ public class updateAnh extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.lbLoading.setVisible(false);
     }
-    NguoiDungDangKyDAO ngdao = new NguoiDungDangKyDAO();
+    TaiKhoanDAO tkdao = new TaiKhoanDAO();
     JFileChooser filechooser = new JFileChooser();
     Signup sg = new Signup();
+    File file;
 
     void chonAnh() {
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File file = filechooser.getSelectedFile();
+            file = filechooser.getSelectedFile();
+            System.out.println("" + file);
             String imagePath = file.getAbsolutePath();
+            System.out.println("" +imagePath);
             AccountData.setLink(imagePath);
             XImage.save(file);
             int setwith = 250;
@@ -50,11 +54,11 @@ public class updateAnh extends javax.swing.JFrame {
         }
     }
 
-    NguoiDung getForm() {
-        NguoiDung ng = new NguoiDung();
-        ng.setTenTK(AccountData.getTenTK());
-        ng.setAvatar(lbAnh.getToolTipText());
-        return ng;
+    TaiKhoan getForm() {
+        TaiKhoan tk = new TaiKhoan();
+        tk.setTenTk(AccountData.getTenTK());
+        tk.setAvatar(file.getAbsolutePath());
+        return tk;
     }
 
     void update() {
@@ -64,9 +68,9 @@ public class updateAnh extends javax.swing.JFrame {
     }
 
     void ok() {
-        NguoiDung ng = getForm();
+        TaiKhoan ng = getForm();
         try {
-            ngdao.update(ng);
+            tkdao.update(ng);
             msgBox.alert(this, "Thêm ảnh thành công");
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,7 +113,6 @@ public class updateAnh extends javax.swing.JFrame {
         getContentPane().add(lbLoading, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
 
         lbAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AnhMatDinh.png"))); // NOI18N
         lbAnh.setText("Ảnh");
         lbAnh.setToolTipText("");
         lbAnh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,7 +164,7 @@ public class updateAnh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkMouseClicked
 
     private void btnBoQuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBoQuaActionPerformed
-        boQua();
+//        boQua();
     }//GEN-LAST:event_btnBoQuaActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
