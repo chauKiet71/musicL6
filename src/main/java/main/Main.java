@@ -14,6 +14,7 @@ import TimKiem.TimKiem_TatCa;
 import entity.BaiHatEntity;
 import entity.BaiHatStateManager;
 import form.FormTimKiemItem;
+import form.FormTrangChu;
 import form.Form_ChuDe;
 import form.Form_TrangChu;
 import java.awt.BasicStroke;
@@ -60,7 +61,7 @@ public class Main extends javax.swing.JFrame {
                     setPanel(wel);
                     lbTitle.setText("Tìm kiếm");
                 } else if (index == 1) {
-                    Form_TrangChu wel = new Form_TrangChu();
+                    FormTrangChu wel = new FormTrangChu();
                     setPanel(wel);
                     lbTitle.setText("Trang Chủ");
                 } else if (index == 2 && subIndex == 1) {
