@@ -17,6 +17,7 @@ import form.FormTimKiemItem;
 import form.FormTrangChu;
 import form.Form_ChuDe;
 import form.Form_TrangChu;
+import form.InfoCaNhan;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -52,6 +53,8 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        InfoCaNhan info = new InfoCaNhan();
+        info.setVisible(false);
         content.setVerticalScrollBar(new ScrollBarr());
         menu1.setEvent(new MenuEvent() {
             @Override
@@ -268,6 +271,7 @@ public class Main extends javax.swing.JFrame {
         account1 = new component.Account();
         jSeparator1 = new javax.swing.JSeparator();
         body = new javax.swing.JPanel();
+        infoCaNhan = new form.InfoCaNhan();
         menu1 = new Menu.Menu();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
@@ -290,6 +294,11 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
         setUndecorated(true);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         panel1.setBackground(new java.awt.Color(29, 38, 49));
         panel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -365,26 +374,27 @@ public class Main extends javax.swing.JFrame {
 
         account1.setBackground(new java.awt.Color(29, 38, 49));
         account1.setForeground(new java.awt.Color(255, 255, 255));
+        account1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                account1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                account1MouseEntered(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                account1MouseReleased(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator1.setOpaque(true);
 
         body.setOpaque(false);
+        body.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        body.add(infoCaNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 140, -1));
 
         menu1.setBackground(new java.awt.Color(255, 153, 153));
-
-        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
-        body.setLayout(bodyLayout);
-        bodyLayout.setHorizontalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        bodyLayout.setVerticalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        body.add(menu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 171, 598));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -567,7 +577,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addComponent(move, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panel1Layout.setVerticalGroup(
@@ -630,6 +640,24 @@ public class Main extends javax.swing.JFrame {
         pause();
     }//GEN-LAST:event_lbPlayMouseClicked
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
+    }//GEN-LAST:event_formMouseClicked
+
+    private void account1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_account1MouseReleased
+
+    }//GEN-LAST:event_account1MouseReleased
+
+    private void account1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_account1MouseClicked
+        InfoCaNhan info = new InfoCaNhan();
+        info.setVisible(true);
+    }//GEN-LAST:event_account1MouseClicked
+
+    private void account1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_account1MouseEntered
+        InfoCaNhan info = new InfoCaNhan();
+        info.setVisible(false);
+    }//GEN-LAST:event_account1MouseEntered
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -676,6 +704,7 @@ public class Main extends javax.swing.JFrame {
     private swing.Button button1;
     private javax.swing.JScrollPane content;
     private form.FormTrangChu formTrangChu1;
+    private form.InfoCaNhan infoCaNhan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

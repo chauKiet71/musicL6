@@ -21,7 +21,7 @@ import utils.XJdbcc;
 public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
 
     String INSERT = "INSERT INTO TaiKhoan (TenTK, MatKhau, VaiTro, avatar, TrangThai) VALUES (?, ?, ?, ?, ?)";
-    String UPDATE = "UPDATE TaiKhoan set avatar = ? WHERE TenTK = ?";
+    String UPDATE = "UPDATE TaiKhoan set MatKhau = ?, VaiTro = ?,  avatar = ? , TrangThai = ? WHERE TenTK = ?";
     String DELETE = "DELETE FROM TaiKhoan WHERE TenTK = ?";
     String SELECT_BY_ID = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
     
@@ -39,7 +39,7 @@ public class TaiKhoanDAO extends MusicDAO<TaiKhoan, String> {
     @Override
     public void update(TaiKhoan entity) {
         try {
-            XJdbcc.update(UPDATE, entity.getAvatar(),   entity.getTenTk());
+            XJdbcc.update(UPDATE, entity.getMatKhau(), entity.isVaiTro(), entity.getAvatar(),   entity.getTrangThai(),entity.getTenTk());
         } catch (SQLException ex) {
             Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,13 +36,14 @@ public class updateAnh extends javax.swing.JFrame {
     JFileChooser filechooser = new JFileChooser();
     Signup sg = new Signup();
     File file;
+    File file2;
 
     void chonAnh() {
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             file = filechooser.getSelectedFile();
             System.out.println("" + file);
             String imagePath = file.getAbsolutePath();
-            System.out.println("" +imagePath);
+            System.out.println("" + imagePath);
             AccountData.setLink(imagePath);
             XImage.save(file);
             int setwith = 250;
@@ -61,6 +62,15 @@ public class updateAnh extends javax.swing.JFrame {
         return tk;
     }
 
+    TaiKhoan getForm2() {
+        String path = "C:\\Users\\PC\\Desktop\\Music-M6-master\\src\\main\\resources\\icon\\AnhMatDinh.png";
+        file2 = new File(path);
+        TaiKhoan tk = new TaiKhoan();
+        tk.setTenTk(AccountData.getTenTK());
+        tk.setAvatar(file2.getAbsolutePath());
+        return tk;
+    }
+
     void update() {
         if (lbAnh != null) {
             btnOk.setEnabled(true);
@@ -68,25 +78,40 @@ public class updateAnh extends javax.swing.JFrame {
     }
 
     void ok() {
-        TaiKhoan ng = getForm();
+        TaiKhoan tk = getForm();
         try {
-            tkdao.update(ng);
+            tkdao.update(tk);
             msgBox.alert(this, "Thêm ảnh thành công");
+            lbLoading.setVisible(true);
+            Timer formTimer = new Timer(2000, event -> {
+                // Chuyển đến form chính sau 2 giây
+                LogIn li = new LogIn();
+                li.setVisible(true);
+                this.dispose();
+            });
+            formTimer.setRepeats(false);
+            formTimer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     void boQua() {
-        lbLoading.setVisible(true);
-        Timer formTimer = new Timer(2000, event -> {
-            // Chuyển đến form chính sau 2 giây
-            Main mi = new Main();
-            mi.setVisible(true);
-            this.dispose();
-        });
-        formTimer.setRepeats(false);
-        formTimer.start();
+        TaiKhoan tk =getForm2();
+        try {
+            tkdao.update(tk);
+            lbLoading.setVisible(true);
+            Timer formTimer = new Timer(2000, event -> {
+                // Chuyển đến form chính sau 2 giây
+                LogIn li = new LogIn();
+                li.setVisible(true);
+                this.dispose();
+            });
+            formTimer.setRepeats(false);
+            formTimer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -113,6 +138,7 @@ public class updateAnh extends javax.swing.JFrame {
         getContentPane().add(lbLoading, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
 
         lbAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AnhMatDinh.png"))); // NOI18N
         lbAnh.setText("Ảnh");
         lbAnh.setToolTipText("");
         lbAnh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,7 +190,7 @@ public class updateAnh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkMouseClicked
 
     private void btnBoQuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBoQuaActionPerformed
-//        boQua();
+        boQua();
     }//GEN-LAST:event_btnBoQuaActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed

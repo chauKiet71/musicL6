@@ -27,6 +27,12 @@ public class Account extends javax.swing.JPanel {
 
         listAccount1 = new component.ListAccount<>();
 
+        listAccount1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listAccount1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -42,6 +48,10 @@ public class Account extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void listAccount1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listAccount1MouseClicked
+
+    }//GEN-LAST:event_listAccount1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

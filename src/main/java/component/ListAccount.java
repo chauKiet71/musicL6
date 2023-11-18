@@ -42,4 +42,5 @@ public class ListAccount<E extends Object> extends JList<E> {
         model.addElement(data);
     }
     
+    
 }
